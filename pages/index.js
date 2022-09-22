@@ -1,3 +1,15 @@
+import Footer from "../components/Footer";
+import Layout from "../components/Layout";
+import Navbar from "../components/Navbar";
+
 export default function Home() {
-  return <h1 className="text-3xl font-bold underline">rent!</h1>;
+  return (
+    <>
+      <Layout title="home">
+        <div>
+          <h1 className="text-center">Homepage</h1>
+        </div>
+      </Layout>
+    </>
+  );
 }
