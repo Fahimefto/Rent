@@ -1,10 +1,10 @@
-import Link from 'next/link'
+import Link from 'next/link';
 import { useState } from 'react';
-
-const LoginForm = () => {
-    const [email,setEmail]=useState("")
-    const [password, setPassword] = useState("");
-    const submitHandler =  (e) => {};
+const SignUpForm = () => {
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const submitHandler = (e) => {};
   return (
     <div>
       <div>
@@ -12,9 +12,43 @@ const LoginForm = () => {
           onSubmit={submitHandler}
           className='p-8 mt-6 mb-0 space-y-4 rounded-lg shadow-2xl'
         >
-          <p className='text-lg font-medium text-center'>
-            login
-          </p>
+          <p className='text-lg font-medium text-center'>Sign Up</p>
+          <div>
+            <label htmlFor='name' className='text-sm font-medium'>
+              Name
+            </label>
+
+            <div className='relative mt-1'>
+              <input
+                type='name'
+                id='name'
+                className='w-full p-4 pr-12 text-sm border-gray-200 rounded-lg shadow-sm'
+                placeholder='Enter your name'
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                required
+              />
+
+              <span className='absolute inset-y-0 inline-flex items-center right-4'>
+                <svg
+                  className='w-5 h-5 text-gray-400'
+                  width='24'
+                  height='24'
+                  viewBox='0 0 24 24'
+                  strokeWidth='2'
+                  stroke='currentColor'
+                  fill='none'
+                  strokeLinecap='round'
+                  strokeLinejoin='round'
+                >
+                  <path stroke='none' d='M0 0h24v24H0z' />
+                  <circle cx='9' cy='7' r='4' />{' '}
+                  <path d='M3 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2' />
+                  <path d='M16 11l2 2l4 -4' />
+                </svg>
+              </span>
+            </div>
+          </div>
 
           <div>
             <label htmlFor='email' className='text-sm font-medium'>
@@ -96,19 +130,12 @@ const LoginForm = () => {
             type='submit'
             className='block w-full px-5 py-3 text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 rounded-lg'
           >
-            login
+            Submit
           </button>
-
-          <p className='text-sm text-center text-gray-500'>
-            No account?
-            <Link className='underline' href='/signUp'>
-              Sign up
-            </Link>
-          </p>
         </form>
       </div>
     </div>
   );
 };
 
-export default LoginForm;
+export default SignUpForm;

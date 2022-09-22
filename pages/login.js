@@ -1,10 +1,13 @@
+import Layout from '../components/Layout';
 import LoginForm from '../components/LoginForm'
 const Login = () => {
-    return ( 
+    return (
+      <Layout title="Login">
         <div>
-           <LoginForm/>
-       </div>
-     )
+          <LoginForm />
+        </div>
+      </Layout>
+    );
 };
  
 export default Login;
