@@ -45,9 +45,9 @@ export default function Nav() {
             </li>
             <li>
               <Link
-                href="/create"
+                href="/find"
                 aria-label="Product pricing"
-                title="Product pricing"
+                title="Create"
                 className="font-medium tracking-wide text-gray-900 transition-colors duration-200 hover:text-teal-accent-400"
               >
                 Find
@@ -55,7 +55,7 @@ export default function Nav() {
             </li>
             <li>
               <Link
-                href="/find"
+                href="/about"
                 aria-label="About us"
                 title="About us"
                 className="font-medium tracking-wide text-gray-900 transition-colors duration-200 hover:text-teal-accent-400"
