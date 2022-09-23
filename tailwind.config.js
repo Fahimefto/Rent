@@ -5,7 +5,9 @@ module.exports = {
     "./components/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: { pt: ["PT Sans", "sans-serif"] },
+    },
   },
   plugins: [],
 };
