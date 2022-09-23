@@ -1,6 +1,7 @@
 import Image from "next/image";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { BarsArrowDownIcon, XMarkIcon } from "@heroicons/react/24/solid";
+import Link from "next/link";
 
 export default function Nav() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -8,8 +9,8 @@ export default function Nav() {
   return (
     <div className="bg-white shadow-md">
       <div className="px-4 py-3 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8">
-        <div className="relative flex items-center justify-between">
-          <a
+        <div className="relative top-0 flex items-center justify-between z-20">
+          <Link
             href="/"
             aria-label="Company"
             title="Company"
@@ -21,58 +22,53 @@ export default function Nav() {
               width={100}
               className="w-8 fill-white"
             />
-          </a>
+          </Link>
           <ul className="flex items-center hidden space-x-8 lg:flex">
             <li>
-              <a
+              <Link
                 href="/"
                 title="Our product"
                 className="font-medium tracking-wide text-gray-900 transition-colors duration-200 hover:text-teal-accent-400"
               >
                 Home
-              </a>
+              </Link>
             </li>
             <li>
-              <a
-                href="/"
+              <Link
+                href="/create"
                 aria-label="Our product"
                 title="Our product"
                 className="font-medium tracking-wide text-gray-900 transition-colors duration-200 hover:text-teal-accent-400"
               >
                 Create
-              </a>
+              </Link>
             </li>
             <li>
-              <a
-                href="/"
+              <Link
+                href="/create"
                 aria-label="Product pricing"
                 title="Product pricing"
                 className="font-medium tracking-wide text-gray-900 transition-colors duration-200 hover:text-teal-accent-400"
               >
                 Find
-              </a>
+              </Link>
             </li>
             <li>
-              <a
-                href="/"
+              <Link
+                href="/find"
                 aria-label="About us"
                 title="About us"
                 className="font-medium tracking-wide text-gray-900 transition-colors duration-200 hover:text-teal-accent-400"
               >
                 About us
-              </a>
+              </Link>
             </li>
           </ul>
           <ul className="flex items-center hidden space-x-8 lg:flex">
             <li>
-              <a
-                href="/"
-                className="inline-flex items-center justify-center h-12 px-6 font-medium tracking-wide text-white bg-emerald-900 transition duration-200  shadow-md rounded-md"
-                aria-label="Sign up"
-                title="Sign up"
-              >
-                Sign in
-              </a>
+              <div className="inline-flex items-center justify-center h-12 px-6 font-medium tracking-wide text-white bg-emerald-900 transition duration-200  shadow-md rounded-md">
+                <Link href="/signin"> Sign IN</Link>
+              </div>
             </li>
           </ul>
           <div className="lg:hidden ">
@@ -101,7 +97,7 @@ export default function Nav() {
                     </div>
                   </div>
                   <nav>
-                    <ul className="space-y-4">
+                    <ul className="space-y-6 z-20 ">
                       <li>
                         <a
                           href="/"
