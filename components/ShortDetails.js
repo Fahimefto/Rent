@@ -40,7 +40,7 @@ export default function ShortDetails() {
               aria-label=""
               className="inline-flex items-center font-semibold transition-colors duration-200 text-deep-purple-accent-400 hover:text-deep-purple-800"
             >
-              Learn more
+              See Details
             </Link>
           </div>
         </div>
@@ -77,15 +77,15 @@ export default function ShortDetails() {
             <Link
               href="#"
               aria-label=""
-              className="inline-flex items-center font-semibold transition-colors duration-200 text-deep-purple-accent-400 hover:text-deep-purple-800"
+              className="inline-flex items-center font-semibold transition-colors duration-200 text-deep-purple-accent-400 hover:text-purple-800"
             >
-              Learn more
+              See Details
             </Link>
           </div>
         </div>
         <div className="overflow-hidden transition-shadow duration-300 bg-white rounded shadow-sm">
           <img
-            src="https://images.pexels.com/photos/139829/pexels-photo-139829.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=750&amp;w=1260"
+            src="https://images.pexels.com/photos/2408666/pexels-photo-2408666.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;w=500"
             className="object-cover w-full h-64"
             alt=""
           />
@@ -118,7 +118,7 @@ export default function ShortDetails() {
               aria-label=""
               className="inline-flex items-center font-semibold transition-colors duration-200 text-deep-purple-accent-400 hover:text-deep-purple-800"
             >
-              Learn more
+              See Details
             </Link>
           </div>
         </div>

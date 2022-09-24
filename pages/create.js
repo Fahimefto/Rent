@@ -1,7 +1,6 @@
-import React from 'react'
+import React from "react";
+import Layout from "../components/Layout";
 
 export default function create() {
-  return (
-    <div>create</div>
-  )
+  return <Layout title="Create"></Layout>;
 }
