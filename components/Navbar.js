@@ -1,7 +1,7 @@
-import Image from "next/image";
-import { useEffect, useState } from "react";
-import { BarsArrowDownIcon, XMarkIcon } from "@heroicons/react/24/solid";
-import Link from "next/link";
+import Image from 'next/image';
+import { useEffect, useState } from 'react';
+import { BarsArrowDownIcon, XMarkIcon } from '@heroicons/react/24/solid';
+import Link from 'next/link';
 
 export default function Nav() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
