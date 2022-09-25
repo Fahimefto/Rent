@@ -68,7 +68,7 @@ export default function Nav() {
           <ul className="flex items-center hidden space-x-8 lg:flex">
             <li>
               <div className="inline-flex items-center justify-center h-12 px-6 font-medium tracking-wide text-white bg-emerald-900 transition duration-200  shadow-md rounded-md">
-                <Link href="/signin"> Sign IN</Link>
+                <Link href="/login"> Sign IN</Link>
               </div>
             </li>
           </ul>
