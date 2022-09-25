@@ -6,7 +6,7 @@ import { useState, useEffect } from "react";
 export default function Home() {
   return (
     <>
-      <Layout title="home">
+      <Layout title="Home">
         <div className="">
           <Hero />
         </div>
