@@ -8,9 +8,9 @@ export default function ShortDetails() {
       <div className='grid gap-8 lg:grid-cols-3 sm:max-w-sm sm:mx-auto lg:max-w-full'>
         <div className='overflow-hidden transition-shadow duration-300 bg-white rounded shadow-sm'>
           <img
-            src={
+            src=
               'https://images.rentals.ca/property-pictures/medium/vancouver-bc/468498/apartment-5596387.jpg'
-            }
+            
             alt=''
             className='object-cover w-full h-64'
             alt=''
@@ -23,7 +23,7 @@ export default function ShortDetails() {
                 aria-label='Category'
                 title='traveling'
               >
-                traveling
+                Full Mess
               </Link>
               <span className='text-gray-600'>— 28 Dec 2020</span>
             </p>
@@ -33,7 +33,7 @@ export default function ShortDetails() {
               title='Visit the East'
               className='inline-block mb-3 text-2xl font-bold leading-5 transition-colors duration-200 hover:text-deep-purple-accent-700'
             >
-              Visit the East
+              Modina Market,Sylhet
             </Link>
             <p className='mb-2 text-gray-700'>
               Sed ut perspiciatis unde omnis iste natus error sit sed quia
@@ -50,7 +50,7 @@ export default function ShortDetails() {
         </div>
         <div className='overflow-hidden transition-shadow duration-300 bg-white rounded shadow-sm'>
           <img
-            src='https://www.essentialliving.co.uk/wp-content/uploads/2015/09/Studio_bed-WR-685x440.jpg'
+            src='https://images.rentals.ca/property-pictures/medium/vancouver-bc/468498/apartment-5596387.jpg'
             alt=''
           />
           <div className='p-5 border border-t-0'>
@@ -61,7 +61,7 @@ export default function ShortDetails() {
                 aria-label='Category'
                 title='traveling'
               >
-                traveling
+                Two rooms
               </Link>
               <span className='text-gray-600'>— 28 Dec 2020</span>
             </p>
@@ -71,7 +71,7 @@ export default function ShortDetails() {
               title='Simple is better'
               className='inline-block mb-3 text-2xl font-bold leading-5 transition-colors duration-200 hover:text-deep-purple-accent-700'
             >
-              Simple is better
+              Topobon R/A,Sylhet
             </Link>
             <p className='mb-2 text-gray-700'>
               Sed ut perspiciatis unde omnis iste natus error sit sed quia
@@ -88,7 +88,7 @@ export default function ShortDetails() {
         </div>
         <div className='overflow-hidden transition-shadow duration-300 bg-white rounded shadow-sm'>
           <img
-            src='https://images.rentals.ca/property-pictures/medium/toronto-on/289838/apartment-5386863.jpg'
+            src='https://images.rentals.ca/property-pictures/medium/vancouver-bc/468498/apartment-5596387.jpg'
             className='object-cover w-full h-64'
             alt=''
           />
@@ -100,7 +100,7 @@ export default function ShortDetails() {
                 aria-label='Category'
                 title='traveling'
               >
-                traveling
+                Single Room
               </Link>
               <span className='text-gray-600'>— 28 Dec 2020</span>
             </p>
@@ -110,7 +110,7 @@ export default function ShortDetails() {
               title='Film It!'
               className='inline-block mb-3 text-2xl font-bold leading-5 transition-colors duration-200 hover:text-deep-purple-accent-700'
             >
-              Film It!
+              Kali Bari,Sylhet
             </Link>
             <p className='mb-2 text-gray-700'>
               Sed ut perspiciatis unde omnis iste natus error sit sed quia
