@@ -1,65 +1,65 @@
-import Image from "next/image";
-import { useEffect, useState } from "react";
-import { BarsArrowDownIcon, XMarkIcon } from "@heroicons/react/24/solid";
-import Link from "next/link";
+import Image from 'next/image';
+import { useEffect, useState } from 'react';
+import { BarsArrowDownIcon, XMarkIcon } from '@heroicons/react/24/solid';
+import Link from 'next/link';
 
 export default function Nav() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
-    <div className="bg-white shadow-md">
-      <div className="px-4 py-3 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8">
-        <div className="relative top-0 flex items-center justify-between z-20">
+    <div className='bg-white shadow-md'>
+      <div className='px-4 py-3 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8'>
+        <div className='relative top-0 flex items-center justify-between z-20'>
           <Link
-            href="/"
-            aria-label="Company"
-            title="Company"
-            className="inline-flex items-center"
+            href='/'
+            aria-label='Company'
+            title='Company'
+            className='inline-flex items-center'
           >
             <Image
               src="/asset/rent1.png"
               height={50}
               width={100}
-              className="w-8 fill-white"
+              className='w-8 fill-white'
               alt="image"
             />
           </Link>
-          <ul className="flex items-center hidden space-x-8 lg:flex">
+          <ul className='flex items-center hidden space-x-8 lg:flex'>
             <li>
               <Link
-                href="/"
-                title="Our product"
-                className="font-medium tracking-wide text-gray-900 transition-colors duration-200 hover:text-teal-accent-400"
+                href='/'
+                title='Our product'
+                className='font-medium tracking-wide text-gray-900 transition-colors duration-200 hover:text-teal-accent-400'
               >
                 Home
               </Link>
             </li>
             <li>
               <Link
-                href="/create"
-                aria-label="Our product"
-                title="Our product"
-                className="font-medium tracking-wide text-gray-900 transition-colors duration-200 hover:text-teal-accent-400"
+                href='/create'
+                aria-label='Our product'
+                title='Our product'
+                className='font-medium tracking-wide text-gray-900 transition-colors duration-200 hover:text-teal-accent-400'
               >
                 Create
               </Link>
             </li>
             <li>
               <Link
-                href="/find"
-                aria-label="Product pricing"
-                title="Create"
-                className="font-medium tracking-wide text-gray-900 transition-colors duration-200 hover:text-teal-accent-400"
+                href='/find'
+                aria-label='Product pricing'
+                title='Create'
+                className='font-medium tracking-wide text-gray-900 transition-colors duration-200 hover:text-teal-accent-400'
               >
                 Find
               </Link>
             </li>
             <li>
               <Link
-                href="/about"
-                aria-label="About us"
-                title="About us"
-                className="font-medium tracking-wide text-gray-900 transition-colors duration-200 hover:text-teal-accent-400"
+                href='/about'
+                aria-label='About us'
+                title='About us'
+                className='font-medium tracking-wide text-gray-900 transition-colors duration-200 hover:text-teal-accent-400'
               >
                 About us
               </Link>
@@ -98,7 +98,7 @@ export default function Nav() {
                     </div>
                   </div>
                   <nav>
-                    <ul className="space-y-6 z-20 ">
+                    <ul className='space-y-6 z-20 '>
                       <li>
                         <Link
                           href="/"
