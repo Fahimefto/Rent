@@ -4,13 +4,14 @@ const SignUpForm = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
   const submitHandler = (e) => {};
   return (
     <div>
-      <div className="max-w-3xl mx-auto">
+      <div className="max-w-3xl mx-auto shadow-2xl">
         <form
           onSubmit={submitHandler}
-          className="p-16 mt-6 mb-0 space-y-4 rounded-lg shadow-2xl"
+          className="p-16 mt-6 mb-0 space-y-4 rounded-lg "
         >
           <p className="text-2xl font-bold text-center">Create your Account</p>
           <div>
