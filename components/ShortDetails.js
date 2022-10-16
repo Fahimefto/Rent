@@ -13,7 +13,7 @@ export default function ShortDetails() {
             
             alt=''
             className='object-cover w-full h-64'
-            alt=''
+            
           />
           <div className='p-5 border border-t-0'>
             <p className='mb-3 text-xs font-semibold tracking-wide uppercase'>
