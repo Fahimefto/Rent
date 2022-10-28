@@ -1,13 +1,40 @@
+import { useEffect, useState } from "react";
 import { Cursor, useTypewriter } from "react-simple-typewriter";
-
+const address = require("@bangladeshi/bangladesh-address");
 export default function Hero() {
+  const [division, setDivision] = useState([]);
+  const [divisionId, setDivisionId] = useState([]);
+  const [district, setDistrict] = useState([]);
+  const [districtId, setDistrictId] = useState([]);
+  const [area, setArea] = useState([]);
+
   const [words, count] = useTypewriter({
-    words: ["find your Home", "Create a rent", "rent your Place"],
+    words: ["find your Home", "rent your Place"],
     loop: true,
     delaySpeed: 2000,
   });
+  useEffect(() => {
+    const division = address.allDivision();
+    setDivision(division);
+
+    console.log(division);
+  }, []);
+  useEffect(() => {
+    const district = address.districtsOf(divisionId);
+    setDistrict(district);
+
+    console.log(district);
+  }, [divisionId]);
+  useEffect(() => {
+    console.log(districtId);
+    const area = address.upazilasOf(districtId);
+    setArea(area);
+
+    console.log(area);
+  }, [districtId]);
+
   return (
-    <div className="flex flex-col items-center justify-center  mx-auto sm:max-w-xl md:max-w-2xl  md:px-8">
+    <div className="flex flex-col items-center justify-center  mx-auto sm:max-w-xl md:max-w-3xl  md:px-8">
       <div className="max-w-xl mb-10 md:mx-auto sm:text-center lg:max-w-2xl md:mb-12">
         <div>
           <p className="inline-block px-3 py-px mb-4 text-xs font-semibold tracking-wider text-teal-900 uppercase rounded-full bg-teal-accent-400">
@@ -23,12 +50,47 @@ export default function Hero() {
         </p>
       </div>
       <form className="flex flex-col items-center w-full mb-4 md:flex-row md:px-16">
-        <input
+        <select
           placeholder="Find by location"
           required=""
           type="text"
           className="flex-grow w-full h-12 px-4 mb-3 transition duration-200 bg-white border border-emerald-600 rounded shadow-sm appearance-none md:mr-2 md:mb-0 focus:border-deep-purple-accent-400 focus:outline-none focus:shadow-outline"
-        />
+          onChange={(event) => setDivisionId(event.target.value)}
+        >
+          <option> Select Division </option>
+          {division.map((div, index) => (
+            <option key={index} value={div}>
+              {div}
+            </option>
+          ))}
+        </select>
+        <select
+          placeholder="Find by location"
+          required=""
+          type="slect"
+          className="flex-grow w-full h-12 px-4 mb-3 transition duration-200 bg-white border border-emerald-600 rounded shadow-sm appearance-none md:mr-2 md:mb-0 focus:border-deep-purple-accent-400 focus:outline-none focus:shadow-outline"
+          onChange={(event) => setDistrictId(event.target.value)}
+        >
+          <option> Select District </option>
+          {district.map((dis, index) => (
+            <option key={index} value={dis}>
+              {dis}
+            </option>
+          ))}
+        </select>
+        <select
+          placeholder="Find by location"
+          required=""
+          type="slect"
+          className="flex-grow w-full h-12 px-4 mb-3 transition duration-200 bg-white border border-emerald-600 rounded shadow-sm appearance-none md:mr-2 md:mb-0 focus:border-deep-purple-accent-400 focus:outline-none focus:shadow-outline"
+        >
+          <option> Select Area </option>
+          {area?.map((area, index) => (
+            <option key={index} value={area.upazila}>
+              {area.upazila}
+            </option>
+          ))}
+        </select>
         <button
           type="submit"
           className="inline-flex items-center justify-center w-full h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md md:w-auto bg-emerald-800 hover:bg-deep-purple-accent-700 focus:shadow-outline focus:outline-none"
