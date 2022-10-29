@@ -64,6 +64,16 @@ export default function Nav() {
                 About us
               </Link>
             </li>
+            <li>
+              <Link
+                href="/profile"
+                aria-label="profile"
+                title="Profile"
+                className="font-medium tracking-wide text-gray-900 transition-colors duration-200 hover:text-teal-accent-400"
+              >
+                Profile
+              </Link>
+            </li>
           </ul>
           <ul className="flex items-center hidden space-x-8 lg:flex">
             <li>

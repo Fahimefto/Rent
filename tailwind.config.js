@@ -9,5 +9,5 @@ module.exports = {
       fontFamily: { pt: ["PT Sans", "sans-serif"] },
     },
   },
-  plugins: [],
+  plugins: [require("tailwind-scrollbar-hide")],
 };
