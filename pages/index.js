@@ -17,7 +17,9 @@ export default function Home({ data }) {
           <h1 className="text-center text-3xl font-bold m-10">Recent Post</h1>
           <div className=" bg-emerald-800 py-10 px-10 rounded-xl ">
             <div className="grid grid-cols-1 xl:grid-cols-3 gap-5 mx-auto ">
-              <Card data={data} />
+              {data.slice(0, 3).map((data) => (
+                <Card data={data} />
+              ))}
             </div>
             <span className="flex justify-center mt-10  ">
               <Link href="/find">
