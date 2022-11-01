@@ -1,10 +1,26 @@
 import Link from "next/link";
 import { useState } from "react";
+import { useSession, signIn } from "next-auth/react";
 
 const LoginForm = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const submitHandler = (e) => {};
+  const submitHandler = async (e) => {
+    e.preventDefault();
+    console.log(email, password);
+    try {
+      console.log();
+      const result = await signIn("credentials", {
+        email: email,
+        password: password,
+        redirect: false,
+      });
+      console.log(result);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <div>
       <div className="max-w-2xl mx-auto ">
