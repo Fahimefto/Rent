@@ -4,8 +4,9 @@ import ShortDetails from "../components/ShortDetails";
 import { useState, useEffect } from "react";
 import Card from "../components/Card";
 import Link from "next/link";
+import axios from "../axios/axios";
 
-export default function Home() {
+export default function Home({ data }) {
   return (
     <>
       <Layout title="Home">
@@ -16,9 +17,7 @@ export default function Home() {
           <h1 className="text-center text-3xl font-bold m-10">Recent Post</h1>
           <div className=" bg-emerald-800 py-10 px-10 rounded-xl ">
             <div className="grid grid-cols-1 xl:grid-cols-3 gap-5 mx-auto ">
-              <Card />
-              <Card />
-              <Card />
+              <Card data={data} />
             </div>
             <span className="flex justify-center mt-10  ">
               <Link href="/find">
@@ -32,4 +31,15 @@ export default function Home() {
       </Layout>
     </>
   );
+}
+
+export async function getServerSideProps() {
+  const res = await axios.get("/post/all");
+  const resData = res.data;
+  const data = resData;
+
+  console.log(data);
+  return {
+    props: { data },
+  };
 }

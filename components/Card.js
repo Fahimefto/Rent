@@ -1,7 +1,7 @@
 import Link from "next/link";
 import React from "react";
 
-export default function () {
+export default function ({ data }) {
   return (
     <div>
       <a
@@ -11,22 +11,22 @@ export default function () {
         <picture>
           <img
             alt="Home"
-            src="https://images.unsplash.com/photo-1613545325278-f24b0cae1224?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80"
+            src="https://images.unsplash.com/photo-1527529482837-4698179dc6ce?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80"
             className="h-56 w-full rounded-md object-cover"
           />
         </picture>
         <div className="mt-2">
           <dl>
             <div>
-              <dt className="sr-only">Price</dt>
+              <div className="sr-only">Price</div>
 
-              <dd className="text-sm text-gray-500">$240,000</dd>
+              <div className="text-sm text-gray-500">{data.title}</div>
             </div>
 
             <div>
               <dt className="sr-only">Address</dt>
 
-              <dd className="font-medium">123 Wallaby Avenue, Park Road</dd>
+              <dd className="font-medium">{data.division}</dd>
             </div>
           </dl>
 
