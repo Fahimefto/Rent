@@ -1,21 +1,30 @@
 import Link from "next/link";
+import { useRouter } from "next/router";
 import { useState } from "react";
-import { useSession, signIn } from "next-auth/react";
+import axios from "../axios/axios";
 
 const LoginForm = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const router = useRouter();
   const submitHandler = async (e) => {
     e.preventDefault();
     console.log(email, password);
     try {
-      console.log();
-      const result = await signIn("credentials", {
-        email: email,
-        password: password,
-        redirect: false,
-      });
+      const result = await axios.post(
+        "/user/login",
+        {
+          email: email,
+          password: password,
+        },
+        {
+          withCredentials: true,
+        }
+      );
       console.log(result);
+      if (result.status === 200) {
+        router.push("/profile");
+      }
     } catch (error) {
       console.log(error);
     }

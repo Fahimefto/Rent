@@ -57,12 +57,12 @@ export default function profile() {
         <div className="font-bold text-2xl text-center mb-5">All Post</div>
         <div>
           <div className="grid grid-cols-1  lg:grid-cols-3 gap-5 bg-emerald-800 p-5">
+            {/* <Card />
             <Card />
             <Card />
             <Card />
             <Card />
-            <Card />
-            <Card />
+            <Card /> */}
           </div>
         </div>
       </div>
