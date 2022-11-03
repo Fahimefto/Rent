@@ -2,9 +2,31 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 import { BarsArrowDownIcon, XMarkIcon } from "@heroicons/react/24/solid";
 import Link from "next/link";
+import useBearStore from "../Store/Store";
+import { useRouter } from "next/router";
+import axios from "../axios/axios";
+import cookie from "js-cookie";
 
 export default function Nav() {
+  const router = useRouter();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [auth, setAuth] = useState(false);
+  const bears = useBearStore((state) => state.bears);
+  const removeAllBears = useBearStore((state) => state.removeAllBears);
+  useEffect(() => {
+    setAuth(bears);
+  }, [bears]);
+  const logoutHandler = async () => {
+    const result = await axios.get("/user/logout", {
+      withCredentials: true,
+    });
+    console.log(result);
+    sessionStorage.clear();
+    removeAllBears();
+    cookie.remove("user");
+    cookie.remove("id");
+    router.reload();
+  };
 
   return (
     <div className="bg-white shadow-md">
@@ -65,21 +87,36 @@ export default function Nav() {
               </Link>
             </li>
             <li>
-              <Link
-                href="/profile"
-                aria-label="profile"
-                title="Profile"
-                className="font-medium tracking-wide text-gray-900 transition-colors duration-200 hover:text-teal-accent-400"
-              >
-                Profile
-              </Link>
+              {!auth ? null : (
+                <Link
+                  href="/profile"
+                  aria-label="profile"
+                  title="Profile"
+                  className="font-medium tracking-wide text-gray-900 transition-colors duration-200 hover:text-teal-accent-400"
+                >
+                  Profile
+                </Link>
+              )}
             </li>
           </ul>
           <ul className="flex items-center hidden space-x-8 lg:flex">
             <li>
-              <div className="inline-flex items-center justify-center h-12 px-6 font-medium tracking-wide text-white bg-emerald-900 transition duration-200  shadow-md rounded-md">
-                <Link href="/login  "> Sign in</Link>
-              </div>
+              {!auth ? (
+                <Link href="/login  ">
+                  <button className="inline-flex items-center justify-center h-12 px-6 font-medium tracking-wide text-white bg-emerald-900 transition duration-200  shadow-md rounded-md">
+                    Login
+                  </button>
+                </Link>
+              ) : (
+                <Link href="/  ">
+                  <button
+                    className="inline-flex items-center justify-center h-12 px-6 font-medium tracking-wide text-white bg-rose-700 transition duration-200  shadow-md rounded-md"
+                    onClick={logoutHandler}
+                  >
+                    Logout
+                  </button>
+                </Link>
+              )}
             </li>
           </ul>
           <div className="lg:hidden ">

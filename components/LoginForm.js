@@ -2,8 +2,12 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { useState } from "react";
 import axios from "../axios/axios";
+import cookie from "js-cookie";
+import { verify } from "jsonwebtoken";
+import useBearStore from "../Store/Store";
 
 const LoginForm = () => {
+  const increasePopulation = useBearStore((state) => state.increasePopulation);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const router = useRouter();
@@ -23,10 +27,22 @@ const LoginForm = () => {
       );
       console.log(result);
       if (result.status === 200) {
-        router.push("/profile");
+        const token = result.data.token;
+        const isVerified = await verify(token, "asdfg");
+        const user = isVerified.name;
+        const id = isVerified.id;
+        console.log(user, id);
+        console.log(isVerified);
+        if (isVerified) {
+          cookie.set("user", user);
+          cookie.set("id", id);
+          router.push("/");
+          increasePopulation();
+        }
       }
     } catch (error) {
       console.log(error);
+      router.push("/login");
     }
   };
 
