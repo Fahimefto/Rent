@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import Card from "../components/Card";
+import Card from "../components/RentCard";
 import Layout from "../components/Layout";
 import ShortDetails from "../components/ShortDetails";
 const address = require("@bangladeshi/bangladesh-address");

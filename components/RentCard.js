@@ -1,5 +1,6 @@
 import Link from "next/link";
 import React from "react";
+import moment from "moment";
 import {
   HomeModernIcon,
   CurrencyDollarIcon,
@@ -10,11 +11,11 @@ import {
   MapPinIcon,
 } from "@heroicons/react/24/outline";
 
-export default function RentCard() {
+export default function RentCard({ data }) {
   return (
     <>
       <div className="bg-white border-2 border-emerald-900 border-opacity-20 rounded-md p-5 shadow-xl">
-        <Link href="/" passHref>
+        <Link href="/">
           <a>
             <img
               className="object-cover object-center w-full h-64 rounded-lg lg:h-80"
@@ -27,39 +28,40 @@ export default function RentCard() {
         <div className="mt-8">
           <div className="flex flex-row w-full gap-2 items-center">
             <MapPinIcon className="flex w-5 text-emerald-900" />
-            <h3 className="flex font-bold text-md text-emerald-800">
-              Topobon,Sylhet Sadar,Sylhet
+            <h3 className="flex font-bold text-sm text-emerald-800">
+              {data.upazila}, {data.district}, {data.division}
             </h3>
           </div>
 
           <h1 className="mt-4 text-xl font-semibold text-gray-800 dark:text-white">
-            Ekta Shundor Basha vara dibo
+            {data.title}
           </h1>
 
           <p className="mt-2 text-gray-800 dark:text-gray-400">
-            ekta basha basha..zubaer thake ei bashay. alway wifi slow. vara
-            beshi na
+            {data.description}
           </p>
 
-          <div className="flex items-center justify-between mt-4">
-            <div>
+          <div className="flex items-center justify-between mt-4 ">
+            <div className="flex flex-col gap-3">
               <div className="text-lg font-medium text-gray-700 dark:text-gray-300  hover:text-gray-500">
                 <div className="flex flex-row w-full gap-2 items-center">
                   <HomeModernIcon className="flex w-5 text-emerald-900" />
-                  <h3 className="flex font-bold text-md">2 Rooms</h3>
+                  <h3 className="flex font-bold text-sm">{data.room} Rooms</h3>
                 </div>
               </div>
               <div className="text-lg font-medium text-gray-700 dark:text-gray-300  hover:text-gray-500">
                 <div className="flex flex-row w-full gap-2 items-center">
                   <CurrencyDollarIcon className="flex w-5 text-emerald-900" />
-                  <h3 className="flex font-bold text-md">1000 BDT</h3>
+                  <h3 className="flex font-bold text-sm">{data.fees} BDT</h3>
                 </div>
               </div>
 
               <div className="text-lg font-medium text-gray-700 dark:text-gray-300  hover:text-gray-500">
                 <div className="flex flex-row w-full gap-2 items-center">
                   <ClockIcon className="flex w-5 text-emerald-900" />
-                  <h3 className="flex text-md">10 January 2022</h3>
+                  <h3 className="flex font-bold text-sm">
+                    {moment(`${data.date}`, "DD/MM/YYYY").fromNow()}
+                  </h3>
                 </div>
               </div>
             </div>
@@ -67,7 +69,7 @@ export default function RentCard() {
             <div className="inline-block text-blue-500 hover:text-blue-400">
               <div className="flex text-lg font-medium text-gray-700 dark:text-gray-300  hover:text-gray-500 gap-5">
                 <div className="flex flex-row w-full gap-2 items-center">
-                  <PencilSquareIcon className="flex w-7 text-amber-500" />
+                  <PencilSquareIcon className="flex w-7 text-amber-500 hover:scale-105" />
                 </div>
                 <div className="flex flex-row w-full gap-2 items-center">
                   <XCircleIcon className="flex w-7 text-rose-700 hover:scale-105" />

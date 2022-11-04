@@ -2,7 +2,7 @@ import Layout from "../components/Layout";
 import Hero from "../components/Hero";
 import ShortDetails from "../components/ShortDetails";
 import { useState, useEffect } from "react";
-import Card from "../components/Card";
+import Card from "../components/RentCard";
 import Link from "next/link";
 import axios from "../axios/axios";
 
@@ -17,13 +17,14 @@ export default function Home({ data }) {
           <h1 className="text-center text-3xl font-bold m-10">Recent Post</h1>
           <div className=" bg-emerald-800 py-10 px-10 rounded-xl ">
             <div className="grid grid-cols-1 xl:grid-cols-3 gap-5 mx-auto ">
-              {data.slice(0, 3).map((data, i) => (
-                <Link href={`/${data.title}`} key={i} passHref>
-                  <>
-                    <Card data={data} key={i} />
-                  </>
-                </Link>
-              ))}
+              {data &&
+                data.slice(0, 3).map((data, i) => (
+                  <Link href={`/${data.title}`} key={i} passHref>
+                    <>
+                      <Card data={data} key={i} />
+                    </>
+                  </Link>
+                ))}
             </div>
             <span className="flex justify-center mt-10  ">
               <Link href="/find">

@@ -3,18 +3,31 @@ import React from "react";
 import Layout from "../../../components/Layout";
 import { useEffect, useState } from "react";
 import PostCard from "../../../components/PostCard";
-
+import axios from "../../../axios/axios";
 export default function post() {
   const router = useRouter();
   const { posts } = router.query;
   const [user, setUser] = useState("");
+  const [rent, setRent] = useState(null);
+
   useEffect(() => {
-    if (posts) {
-      console.log(posts);
-      setUser(posts);
-      console.log(user);
-    }
-  }, [router, user]);
+    const fetchUser = async () => {
+      if (posts) {
+        console.log(posts);
+        setUser(posts);
+        console.log(user);
+        const result = await axios.get(`/post/user/${posts}`, {
+          withCredentials: true,
+        });
+
+        setRent(result.data);
+      }
+    };
+    fetchUser();
+  }, [router]);
+  useEffect(() => {
+    console.log(rent);
+  }, [rent]);
 
   return (
     <Layout>
@@ -29,10 +42,7 @@ export default function post() {
           <hr className="my-8 border-emerald-900 border-2 dark:border-gray-700" />
 
           <div className="grid grid-cols-1 gap-8 md:grid-cols-2 xl:grid-cols-3">
-            <PostCard />
-            <PostCard />
-            <PostCard />
-            <PostCard />
+            {rent && rent.map((rent, i) => <PostCard key={i} data={rent} />)}
           </div>
         </div>
       </section>
