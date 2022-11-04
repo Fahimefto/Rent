@@ -5,6 +5,8 @@ import axios from "../axios/axios";
 import cookie from "js-cookie";
 import { verify } from "jsonwebtoken";
 import useBearStore from "../Backend/Store";
+import useBearStore from "../Store/Store";
+import toast from "react-hot-toast";
 
 const LoginForm = () => {
   const increasePopulation = useBearStore((state) => state.increasePopulation);
@@ -14,6 +16,7 @@ const LoginForm = () => {
   const submitHandler = async (e) => {
     e.preventDefault();
     console.log(email, password);
+    const notify = toast.loading("Loging in...");
     try {
       const result = await axios.post(
         "/user/login",
@@ -38,11 +41,20 @@ const LoginForm = () => {
           cookie.set("id", id);
           router.push("/");
           increasePopulation();
+          toast.success("Login Successfull", {
+            id: notify,
+          });
         } else {
+          toast.error("Invalid", {
+            id: notify,
+          });
         }
       }
     } catch (error) {
       console.log(error);
+      toast.error("Invalid Password", {
+        id: notify,
+      });
 
       router.push("/login");
     }

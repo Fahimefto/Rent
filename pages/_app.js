@@ -2,6 +2,7 @@ import "../styles/globals.css";
 import { useState } from "react";
 import Router from "next/router";
 import HashLoader from "react-spinners/HashLoader";
+import { Toaster } from "react-hot-toast";
 
 const override = {
   position: "absolute",
@@ -27,6 +28,14 @@ function MyApp({ Component, pageProps }) {
   });
   return (
     <>
+      <Toaster
+        toastOptions={{
+          style: {
+            background: "#363636",
+            color: "#fff",
+          },
+        }}
+      />
       {loading && (
         <HashLoader
           color="#006747"
