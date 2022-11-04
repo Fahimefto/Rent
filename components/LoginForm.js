@@ -5,7 +5,7 @@ import axios from "../axios/axios";
 import cookie from "js-cookie";
 import { verify } from "jsonwebtoken";
 import useBearStore from "../Backend/Store";
-import useBearStore from "../Store/Store";
+
 import toast from "react-hot-toast";
 
 const LoginForm = () => {
