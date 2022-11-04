@@ -116,8 +116,8 @@ export default function find({ data }) {
         </form>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-1 xl:grid-cols-3 mt-10 gap-5 bg-emerald-800 p-10 rounded-md">
-        {data1?.map((data) => (
-          <Card data={data} />
+        {data1?.map((data, i) => (
+          <Card data={data} key={i} />
         ))}
       </div>
     </Layout>
