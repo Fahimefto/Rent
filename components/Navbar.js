@@ -51,13 +51,15 @@ export default function Nav() {
               title="Company"
               className="inline-flex items-center"
             >
-              <Image
-                src="/asset/rent1.png"
-                height={50}
-                width={100}
-                className="w-8 fill-white"
-                alt="image"
-              />
+              <a>
+                <Image
+                  src="/asset/rent1.png"
+                  height={50}
+                  width={100}
+                  className="w-8 fill-white"
+                  alt="image"
+                />
+              </a>
             </Link>
             <ul className="flex items-center hidden space-x-8 lg:flex">
               <li>

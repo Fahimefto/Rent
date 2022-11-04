@@ -3,11 +3,16 @@ import Layout from "../../components/Layout";
 import axios from "../../axios/axios";
 import { useEffect } from "react";
 import Link from "next/link";
+import { useState } from "react";
+
 export default function Profile({ data }) {
-  const [user, setUser] = React.useState(null);
+  const [user, setUser] = useState(null);
+  const [id, setId] = useState("");
+
   useEffect(() => {
     if (data) {
       setUser(data.name);
+      setId(data.id);
     }
   }, [user]);
 
@@ -36,7 +41,7 @@ export default function Profile({ data }) {
                     <span className="text-sm font-bold"> Update Profile </span>
                   </button>
                 </Link>
-                <Link href="/profile/post">
+                <Link href={`/profile/posts/${id}`}>
                   <button className="mt-8 inline-flex items-center rounded border border-emerald-800 hover:bg-emerald-100 px-8 py-3  hover:bg-transparent text-emerald-800  ">
                     <span className="text-sm font-bold"> All Post </span>
                   </button>
