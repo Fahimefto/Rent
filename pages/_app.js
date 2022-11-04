@@ -35,6 +35,7 @@ function MyApp({ Component, pageProps }) {
           size={80}
         />
       )}
+
       <Component {...pageProps} />
     </>
   );

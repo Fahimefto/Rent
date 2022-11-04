@@ -4,8 +4,7 @@ import { useState } from "react";
 import axios from "../axios/axios";
 import cookie from "js-cookie";
 import { verify } from "jsonwebtoken";
-import useBearStore from "../Store/Store";
-import toast, { Toaster } from "react-hot-toast";
+import useBearStore from "../Backend/Store";
 
 const LoginForm = () => {
   const increasePopulation = useBearStore((state) => state.increasePopulation);
@@ -13,13 +12,6 @@ const LoginForm = () => {
   const [password, setPassword] = useState("");
   const router = useRouter();
   const submitHandler = async (e) => {
-    toast.loading("Logging in...", {
-      style: {
-        borderRadius: "10px",
-        background: "#333",
-        color: "#fff",
-      },
-    });
     e.preventDefault();
     console.log(email, password);
     try {
@@ -42,36 +34,16 @@ const LoginForm = () => {
         console.log(user, id);
         console.log(isVerified);
         if (isVerified) {
-          toast.success("Login Successfull", {
-            style: {
-              borderRadius: "10px",
-              background: "#333",
-              color: "#fff",
-            },
-          });
           cookie.set("user", user);
           cookie.set("id", id);
           router.push("/");
           increasePopulation();
         } else {
-          toast.error("Invalid ", {
-            style: {
-              borderRadius: "10px",
-              background: "#333",
-              color: "#fff",
-            },
-          });
         }
       }
     } catch (error) {
       console.log(error);
-      toast.error("Invalid Credentials", {
-        style: {
-          borderRadius: "10px",
-          background: "#333",
-          color: "#fff",
-        },
-      });
+
       router.push("/login");
     }
   };

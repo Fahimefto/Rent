@@ -2,11 +2,11 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 import { BarsArrowDownIcon, XMarkIcon } from "@heroicons/react/24/solid";
 import Link from "next/link";
-import useBearStore from "../Store/Store";
+import useBearStore from "../Backend/Store";
 import { useRouter } from "next/router";
 import axios from "../axios/axios";
 import cookie from "js-cookie";
-import toast, { Toaster } from "react-hot-toast";
+
 export default function Nav() {
   const router = useRouter();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
