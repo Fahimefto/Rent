@@ -116,14 +116,14 @@ export default function Nav() {
               <li>
                 {!auth ? (
                   <Link href="/login  ">
-                    <button className="inline-flex items-center justify-center h-12 px-6 font-bold hover:scale-105 tracking-wide text-emerald-800 bg-emerald-800 bg-opacity-10 transition duration-200  shadow-md rounded-md">
+                    <button className="inline-flex items-center justify-center h-12 px-6 font-bold hover:scale-105 tracking-wide ease-in-out  text-emerald-800 bg-emerald-800 bg-opacity-10 transition duration-75  shadow-md rounded-md">
                       Login
                     </button>
                   </Link>
                 ) : (
                   <Link href="/  ">
                     <button
-                      className="inline-flex items-center justify-center h-12 px-6  tracking-wide text-rose-700 hover:scale-105 bg-opacity-10 font-bold bg-rose-700 transition duration-200  shadow-md rounded-md"
+                      className="inline-flex items-center justify-center h-12 px-6  tracking-wide text-rose-700 hover:scale-105 bg-opacity-10 font-bold bg-rose-700 transition duration-75  shadow-md rounded-md"
                       onClick={logoutHandler}
                     >
                       Logout
