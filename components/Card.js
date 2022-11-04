@@ -6,7 +6,7 @@ export default function ({ data }) {
     <>
       <div className="block rounded-lg p-4 shadow-sm bg-white shadow-indigo-100">
         <div>
-          <Link href={`rent/${data.title}`}>
+          <Link href={`rent/${data.id}`}>
             <img
               alt="Home"
               src="https://images.unsplash.com/photo-1527529482837-4698179dc6ce?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80"

@@ -2,10 +2,11 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 import { BarsArrowDownIcon, XMarkIcon } from "@heroicons/react/24/solid";
 import Link from "next/link";
-import useBearStore from "../Backend/Store";
+import useBearStore from "../Store/Store";
 import { useRouter } from "next/router";
 import axios from "../axios/axios";
 import cookie from "js-cookie";
+import toast from "react-hot-toast";
 
 export default function Nav() {
   const router = useRouter();
@@ -17,15 +18,26 @@ export default function Nav() {
     setAuth(bears);
   }, [bears]);
   const logoutHandler = async () => {
-    const result = await axios.get("/user/logout", {
-      withCredentials: true,
-    });
-    console.log(result);
-    sessionStorage.clear();
-    removeAllBears();
-    cookie.remove("user");
-    cookie.remove("id");
-    router.reload();
+    const notify = toast.loading("Logging out...");
+    try {
+      const result = await axios.get("/user/logout", {
+        withCredentials: true,
+      });
+      console.log(result);
+      toast.success("Logged out", {
+        id: notify,
+      });
+      sessionStorage.clear();
+      removeAllBears();
+      cookie.remove("user");
+      cookie.remove("id");
+      router.reload();
+    } catch (error) {
+      console.log(error);
+      toast.error("Error", {
+        id: notify,
+      });
+    }
   };
 
   return (
@@ -104,14 +116,14 @@ export default function Nav() {
               <li>
                 {!auth ? (
                   <Link href="/login  ">
-                    <button className="inline-flex items-center justify-center h-12 px-6 font-medium tracking-wide text-white bg-emerald-900 transition duration-200  shadow-md rounded-md">
+                    <button className="inline-flex items-center justify-center h-12 px-6 font-bold hover:scale-105 tracking-wide text-emerald-800 bg-emerald-800 bg-opacity-10 transition duration-200  shadow-md rounded-md">
                       Login
                     </button>
                   </Link>
                 ) : (
                   <Link href="/  ">
                     <button
-                      className="inline-flex items-center justify-center h-12 px-6 font-medium tracking-wide text-white bg-rose-700 transition duration-200  shadow-md rounded-md"
+                      className="inline-flex items-center justify-center h-12 px-6  tracking-wide text-rose-700 hover:scale-105 bg-opacity-10 font-bold bg-rose-700 transition duration-200  shadow-md rounded-md"
                       onClick={logoutHandler}
                     >
                       Logout
