@@ -1,8 +1,17 @@
 import React from "react";
 import Card from "../components/Card";
 import Layout from "../components/Layout";
-
+import cookie from "js-cookie";
+import { useEffect } from "react";
 export default function profile() {
+  const [user, setUser] = React.useState(null);
+  useEffect(() => {
+    const token = cookie.get("user");
+    if (token) {
+      setUser(token);
+    }
+  }, [user]);
+
   return (
     <Layout title="profile">
       <section>
@@ -10,16 +19,14 @@ export default function profile() {
           <div className="grid grid-cols-1 gap-8 lg:grid-cols-2 lg:gap-16">
             <div className="relative h-64 overflow-hidden rounded-lg sm:h-80 lg:order-last lg:h-full">
               <img
-                alt="Party"
-                src="https://images.unsplash.com/photo-1527529482837-4698179dc6ce?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80"
+                alt="Profile"
+                src="https://res.cloudinary.com/dtcjz5osi/image/upload/v1667508022/rent/undraw_Select_house_re_s1j9_kbmbhv.png"
                 className="absolute inset-0 h-full w-full object-cover"
               />
             </div>
 
             <div className="lg:py-24">
-              <h2 className="text-3xl font-bold sm:text-4xl">
-                Grow your audience
-              </h2>
+              <h2 className="text-3xl font-bold sm:text-4xl">{user}</h2>
 
               <p className="mt-4 text-gray-600">
                 Lorem ipsum dolor, sit amet consectetur adipisicing elit. Aut
@@ -30,9 +37,9 @@ export default function profile() {
 
               <a
                 href="#"
-                className="mt-8 inline-flex items-center rounded border border-indigo-600 bg-indigo-600 px-8 py-3 text-white hover:bg-transparent hover:text-indigo-600 focus:outline-none focus:ring active:text-indigo-500"
+                className="mt-8 inline-flex items-center rounded border border-emerald-800 hover:bg-emerald-800 px-8 py-3 hover:text-white hover:bg-transparent text-emerald-800 focus:outline-none focus:ring "
               >
-                <span className="text-sm font-medium"> Get Started </span>
+                <span className="text-sm font-medium"> Update Profile </span>
 
                 <svg
                   className="ml-3 h-5 w-5"
