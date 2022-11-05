@@ -18,7 +18,7 @@ export default function RentCard({ data }) {
         <Link href="/">
           <a>
             <img
-              className="object-cover object-center w-full h-64 rounded-lg lg:h-80"
+              className="object-cover object-center w-full h-64 rounded-lg lg:h-80 border shadow-md border-emerald-800"
               src="https://images.unsplash.com/photo-1624996379697-f01d168b1a52?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80"
               alt=""
             />
@@ -29,7 +29,7 @@ export default function RentCard({ data }) {
           <div className="flex flex-row w-full gap-2 items-center">
             <MapPinIcon className="flex w-5 text-emerald-900" />
             <h3 className="flex font-bold text-sm text-emerald-800">
-              {data.upazila}, {data.district}, {data.division}
+              {data.area}, {data.area}, {data.district}, {data.division}
             </h3>
           </div>
 
@@ -60,20 +60,19 @@ export default function RentCard({ data }) {
                 <div className="flex flex-row w-full gap-2 items-center">
                   <ClockIcon className="flex w-5 text-emerald-900" />
                   <h3 className="flex font-bold text-sm">
-                    {moment(`${data.date}`, "DD/MM/YYYY").fromNow()}
+                    {moment(`${data.date}`).fromNow()}
                   </h3>
                 </div>
               </div>
             </div>
 
-            <div className="inline-block text-blue-500 hover:text-blue-400">
-              <div className="flex text-lg font-medium text-gray-700 dark:text-gray-300  hover:text-gray-500 gap-5">
-                <div className="flex flex-row w-full gap-2 items-center">
-                  <PencilSquareIcon className="flex w-7 text-amber-500 hover:scale-105" />
-                </div>
-                <div className="flex flex-row w-full gap-2 items-center">
-                  <XCircleIcon className="flex w-7 text-rose-700 hover:scale-105" />
-                </div>
+            <div className="inline-block 0 ">
+              <div className="flex text-lg font-medium text-emrald-800    gap-5">
+                <Link href={`/rent/${data.id}`}>
+                  <button className="flex justify-end text-emerald-800 bg-opacity-10 border border-emerald-800 w-full gap-2 items-center bg-emerald-800 p-2 text-sm rounded-md">
+                    View Details
+                  </button>
+                </Link>
               </div>
             </div>
           </div>

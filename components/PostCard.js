@@ -29,7 +29,7 @@ export default function PostCard({ data }) {
           <div className="flex flex-row w-full gap-2 items-center">
             <MapPinIcon className="flex w-5 text-emerald-900" />
             <h3 className="flex font-bold text-sm text-emerald-800">
-              {data.upazila}, {data.district}, {data.division}
+              {data.area}, {data.area}, {data.district}, {data.division}
             </h3>
           </div>
 
@@ -60,7 +60,7 @@ export default function PostCard({ data }) {
                 <div className="flex flex-row w-full gap-2 items-center">
                   <ClockIcon className="flex w-5 text-emerald-900" />
                   <h3 className="flex font-bold text-sm">
-                    {moment(`${data.date}`, "DD/MM/YYYY").fromNow()}
+                    {moment(`${data.date}`).fromNow("L")}
                   </h3>
                 </div>
               </div>
@@ -68,9 +68,11 @@ export default function PostCard({ data }) {
 
             <div className="inline-block text-blue-500 hover:text-blue-400">
               <div className="flex text-lg font-medium text-gray-700 dark:text-gray-300  hover:text-gray-500 gap-5">
-                <div className="flex flex-row w-full gap-2 items-center">
-                  <PencilSquareIcon className="flex w-7 text-amber-500 hover:scale-105" />
-                </div>
+                <Link href={`/profile/posts/edit/${data.id}`}>
+                  <div className="flex flex-row w-full gap-2 items-center">
+                    <PencilSquareIcon className="flex w-7 text-amber-500 hover:scale-105" />
+                  </div>
+                </Link>
                 <div className="flex flex-row w-full gap-2 items-center">
                   <XCircleIcon className="flex w-7 text-rose-700 hover:scale-105" />
                 </div>
