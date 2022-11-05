@@ -10,7 +10,7 @@ export default function Update({ data }) {
   const router = useRouter();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [password, setPassword] = useState(null);
 
   useEffect(() => {
     setName(data.name);
@@ -22,24 +22,46 @@ export default function Update({ data }) {
   const submitHandler = async (e) => {
     const notify = toast.loading("Updating your account");
     try {
-      console.log(name, email, password);
-      const result = await axios.put(
-        "/user/me",
-        {
-          name: name,
-          email: email,
-          password: password,
-        },
-        {
-          withCredentials: true,
+      if (password) {
+        console.log(name, email, password);
+        const result = await axios.put(
+          "/user/me",
+          {
+            name: name,
+            email: email,
+            password: password,
+          },
+          {
+            withCredentials: true,
+          }
+        );
+        console.log(result);
+        if (result.status === 200) {
+          toast.success("Account Updated successfully", {
+            id: notify,
+          });
+          router.push("/profile");
         }
-      );
-      console.log(result);
-      if (result.status === 200) {
-        toast.success("Account Updated successfully", {
-          id: notify,
-        });
-        router.push("/profile");
+      }
+      if (!password) {
+        console.log(name, email, password);
+        const result = await axios.put(
+          "/user/me",
+          {
+            name: name,
+            email: email,
+          },
+          {
+            withCredentials: true,
+          }
+        );
+        console.log(result);
+        if (result.status === 200) {
+          toast.success("Account Updated successfully", {
+            id: notify,
+          });
+          router.push("/profile");
+        }
       }
     } catch (error) {
       console.log(error);

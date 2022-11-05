@@ -9,8 +9,7 @@ import {
   HomeModernIcon,
   CurrencyDollarIcon,
   ClockIcon,
-  XCircleIcon,
-  PencilSquareIcon,
+  PhoneIcon,
   MapPinIcon,
 } from "@heroicons/react/24/solid";
 
@@ -49,6 +48,12 @@ function Details({ data }) {
                       {data.area}, {data.upazila}, {data.district},{" "}
                       {data.division}
                     </h3>
+                  </h3>
+                </div>
+                <div className="flex flex-row w-full gap-2 items-center">
+                  <PhoneIcon className="flex w-5 text-emerald-900" />
+                  <h3 className="flex font-bold text-sm">
+                    <h3 className="flex font-bold text-sm">{data.contact}</h3>
                   </h3>
                 </div>
                 <div className="flex flex-row w-full gap-2 items-center">

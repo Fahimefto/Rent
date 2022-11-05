@@ -151,7 +151,6 @@ export default function CreateRent() {
             <textarea
               className="form-input border-2 rounded-full p-2 w-full px-8 border-opacity-50 border-emerald-800 overflow-hidden"
               type="text"
-              maxlength="15"
               onChange={(e) => setDes(e.target.value)}
               placeholder="Write Short Description"
               inputMode="text"

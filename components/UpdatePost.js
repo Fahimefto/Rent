@@ -1,9 +1,11 @@
+import { data } from "autoprefixer";
 import { useRouter } from "next/router";
 import React from "react";
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
+import axios from "../axios/axios";
 
-export default function UpdatePost() {
+export default function UpdatePost({ data }) {
   const address = require("@bangladeshi/bangladesh-address");
   const router = useRouter(null);
   const [title, setTitle] = useState(null);
@@ -18,6 +20,18 @@ export default function UpdatePost() {
   const [districtId, setDistrictId] = useState(null);
   const [upazilaId, setUpazilaId] = useState(null);
   const [area, setArea] = useState([]);
+  const rounter = useRouter();
+  const [edit, setEdit] = useState(null);
+  useEffect(() => {
+    setTitle(data.title);
+    setDes(data.description);
+    setRoom(data.room);
+    setFees(data.fees);
+    setPhone(data.contact);
+    setShortArea(data.area);
+    setDivisionId(data.division);
+    console.log(data);
+  }, [data]);
 
   useEffect(() => {
     const division = address.allDivision();
@@ -39,7 +53,10 @@ export default function UpdatePost() {
     console.log(area);
   }, [districtId]);
 
+  useEffect(() => {}, [districtId]);
+
   const submitHandler = async () => {
+    const { editpost } = rounter.query;
     const notify = toast.loading("Please wait...");
     if (
       !title ||
@@ -68,28 +85,66 @@ export default function UpdatePost() {
         upazilaId
       );
     } else {
-      toast.success("Successfully posted", {
-        id: notify,
-      });
-      console.log(
-        title,
-        des,
-        room,
-        fees,
-        phone,
-        shortArea,
+      try {
+        const res = await axios.get("/user/me", {
+          withCredentials: true,
+        });
+        const id = res.data.id;
+        if (!id) {
+          toast.error("Please login first", {
+            id: notify,
+          });
+        }
+        if (id) {
+          try {
+            const res = await axios.put(
+              `/post/update/${editpost}`,
+              {
+                title: title,
 
-        districtId,
-        divisionId,
-        upazilaId
-      );
+                description: des,
+                contact: phone,
+                area: shortArea,
+                fees: fees,
+                room: room,
+                postal_code: room,
+                district: districtId,
+                upazila: upazilaId,
+                division: divisionId,
+              },
+              { withCredentials: true }
+            );
+            console.log(res);
+            if (res.status === 200) {
+              toast.success("Successfully updated", {
+                id: notify,
+              });
+              router.push(`/rent/${editpost}`);
+            } else {
+              toast.error("Something went wrong", {
+                id: notify,
+              });
+            }
+          } catch (error) {
+            console.log(error);
+            toast.error("Something went wrong", {
+              id: notify,
+            });
+          }
+        }
+      } catch (error) {
+        console.log(error);
+        toast.error("Something went wrong", {
+          id: notify,
+        });
+      }
     }
   };
   return (
     <section className="grid grid-cols-1 gap-0 lg:grid-cols-12">
       <div className="w-full col-span-1 p-4 mx-auto  lg:col-span-6 ">
         <h1 className=" mb-4 text-2xl font-bold  text-left ">
-          Create your Rent
+          Update your Post
         </h1>
         <form className="flex flex-col pb-1 space-y-4 justify-evenly">
           <label className="block">
@@ -97,6 +152,7 @@ export default function UpdatePost() {
             <input
               className="form-input border-2 rounded-full p-2 w-full px-8 border-opacity-50 border-emerald-800"
               type="text"
+              value={title}
               onChange={(e) => setTitle(e.target.value)}
               placeholder="Write your title"
               inputMode="text"
@@ -110,6 +166,7 @@ export default function UpdatePost() {
             <textarea
               className="form-input border-2 rounded-full p-2 w-full px-8 border-opacity-50 border-emerald-800 overflow-hidden"
               type="text"
+              value={des}
               onChange={(e) => setDes(e.target.value)}
               placeholder="Write Short Description"
               inputMode="text"
@@ -121,6 +178,7 @@ export default function UpdatePost() {
             <input
               className="form-input border-2 rounded-full p-2 w-full px-8 border-opacity-50 border-emerald-800"
               type="number"
+              value={room}
               onChange={(e) => setRoom(e.target.value)}
               placeholder="Total Room"
               inputMode="text"
@@ -132,6 +190,7 @@ export default function UpdatePost() {
             <input
               className="form-input border-2 rounded-full p-2 w-full px-8 border-opacity-50 border-emerald-800"
               type="number"
+              value={fees}
               onChange={(e) => setFees(e.target.value)}
               placeholder="Fees"
               inputMode="number"
@@ -143,6 +202,7 @@ export default function UpdatePost() {
             <input
               className="form-input border-2 rounded-full p-2 w-full px-8 border-opacity-50 border-emerald-800"
               type="text"
+              value={phone}
               onChange={(e) => setPhone(e.target.value)}
               placeholder="enter your phone number"
               inputMode="text"
@@ -160,6 +220,7 @@ export default function UpdatePost() {
             <input
               className="form-input border-2 rounded-full p-2 w-full px-8 border-opacity-50 border-emerald-800"
               type="text"
+              value={shortArea}
               onChange={(e) => setShortArea(e.target.value)}
               placeholder="enter your area in short"
               inputMode="text"
@@ -171,6 +232,7 @@ export default function UpdatePost() {
             <select
               className="form-input border-2 rounded-full p-2 w-full px-8 border-opacity-50 border-emerald-800 overflow-hidden"
               type="select"
+              value={divisionId}
               onChange={(e) => setDivisionId(e.target.value)}
               placeholder="Write your name"
               inputMode="select"
@@ -239,7 +301,7 @@ export default function UpdatePost() {
           value="Login"
           onClick={submitHandler}
         >
-          Post
+          Update
         </button>
       </div>
     </section>
