@@ -4,6 +4,7 @@ import Layout from "../../../components/Layout";
 import { useEffect, useState } from "react";
 import PostCard from "../../../components/PostCard";
 import axios from "../../../axios/axios";
+import { toast } from "react-hot-toast";
 export default function post() {
   const router = useRouter();
   const { posts } = router.query;
@@ -29,6 +30,32 @@ export default function post() {
     console.log(rent);
   }, [rent]);
 
+  const deleteHandler = async (id) => {
+    console.log(id);
+    const notify = toast.loading("Deleting your post");
+
+    try {
+      const res = rent ? rent.filter((item) => item.id !== id) : null;
+      console.log(res);
+      const result = await axios.delete(`/post/delete/${id}`, {
+        withCredentials: true,
+      });
+      console.log(result);
+      if (result.status === 200) {
+        toast.success("Post deleted successfully", {
+          id: notify,
+        });
+        setRent(res);
+      }
+      /* setRent(res); */
+    } catch (error) {
+      console.log(error);
+      toast.error("Delete failed", {
+        id: notify,
+      });
+    }
+  };
+
   return (
     <Layout>
       <section className="bg-white dark:bg-gray-900">
@@ -42,7 +69,10 @@ export default function post() {
           <hr className="my-8 border-emerald-900 border-2 dark:border-gray-700" />
 
           <div className="grid grid-cols-1 gap-8 md:grid-cols-2 xl:grid-cols-3">
-            {rent && rent.map((rent, i) => <PostCard key={i} data={rent} />)}
+            {rent &&
+              rent.map((rent, i) => (
+                <PostCard key={i} data={rent} deleteHandler={deleteHandler} />
+              ))}
           </div>
         </div>
       </section>

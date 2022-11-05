@@ -10,10 +10,10 @@ export default function Home({ data }) {
   return (
     <>
       <Layout title="Home">
-        <div className="scrollbar-hide">
+        <div className="scrollbar-hide ">
           <Hero />
         </div>
-        <div>
+        <div className="relative">
           <h1 className="text-center text-3xl font-bold m-10">Recent Post</h1>
           <div className=" bg-emerald-800 py-10 px-10 rounded-xl ">
             <div className="grid grid-cols-1 xl:grid-cols-3 gap-5 mx-auto ">

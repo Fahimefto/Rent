@@ -1,11 +1,14 @@
 import { useEffect, useState } from "react";
 import { Cursor, useTypewriter } from "react-simple-typewriter";
 const address = require("@bangladeshi/bangladesh-address");
+import toast from "react-hot-toast";
+import { useRouter } from "next/router";
 export default function Hero() {
   const [division, setDivision] = useState([]);
-  const [divisionId, setDivisionId] = useState([]);
+  const [divisionId, setDivisionId] = useState(null);
   const [district, setDistrict] = useState([]);
-  const [districtId, setDistrictId] = useState([]);
+  const [districtId, setDistrictId] = useState(null);
+  const [upazila, setUpazila] = useState(null);
   const [area, setArea] = useState([]);
 
   const [words, count] = useTypewriter({
@@ -32,7 +35,42 @@ export default function Hero() {
 
     console.log(area);
   }, [districtId]);
-
+  const router = useRouter();
+  const searchHandler = async () => {
+    const notify = toast.loading("Searching...");
+    console.log("searching");
+    console.log(divisionId, districtId, upazila);
+    if (!divisionId && !districtId && !upazila) {
+      toast.error("Please select a the option", {
+        id: notify,
+      });
+    }
+    try {
+      if (divisionId && districtId && upazila) {
+        router.push({
+          pathname: "/search",
+          query: { divisionId, districtId, upazila, notify },
+        });
+        console.log(router);
+      }
+      if (divisionId && !districtId && !upazila) {
+        router.push({
+          pathname: "/search",
+          query: { divisionId, notify },
+        });
+      }
+      if (divisionId && districtId && !upazila) {
+        router.push({
+          pathname: "/search",
+          query: { divisionId, districtId, notify },
+        });
+      }
+    } catch (error) {
+      toast.error(error.message, {
+        id: notify,
+      });
+    }
+  };
   return (
     <div className="flex flex-col items-center justify-center  mx-auto sm:max-w-xl md:max-w-3xl  md:px-8">
       <div className="max-w-xl mb-10 md:mx-auto sm:text-center lg:max-w-2xl md:mb-12">
@@ -83,8 +121,9 @@ export default function Hero() {
           required=""
           type="slect"
           className="flex-grow w-full h-12 px-4 mb-3 transition duration-200 bg-white border border-emerald-600 rounded shadow-sm appearance-none md:mr-2 md:mb-0 focus:border-deep-purple-accent-400 focus:outline-none focus:shadow-outline"
+          onChange={(event) => setUpazila(event.target.value)}
         >
-          <option> Select Area </option>
+          <option> Select Upazila </option>
           {area?.map((area, index) => (
             <option key={index} value={area.upazila}>
               {area.upazila}
@@ -92,8 +131,9 @@ export default function Hero() {
           ))}
         </select>
         <button
-          type="submit"
+          type="button"
           className="inline-flex items-center justify-center w-full h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md md:w-auto bg-emerald-800 hover:bg-deep-purple-accent-700 focus:shadow-outline focus:outline-none"
+          onClick={searchHandler}
         >
           Search
         </button>

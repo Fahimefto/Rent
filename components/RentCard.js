@@ -28,16 +28,16 @@ export default function RentCard({ data }) {
         <div className="mt-8">
           <div className="flex flex-row w-full gap-2 items-center">
             <MapPinIcon className="flex w-5 text-emerald-900" />
-            <h3 className="flex font-bold text-sm text-emerald-800">
-              {data.area}, {data.area}, {data.district}, {data.division}
+            <h3 className="flex font-bold text-sm text-emerald-800 truncate">
+              {data.area}, {data.upazila}, {data.district}, {data.division}
             </h3>
           </div>
 
-          <h1 className="mt-4 text-xl font-semibold text-gray-800 dark:text-white">
+          <h1 className="mt-4 text-xl font-semibold text-gray-800 dark:text-white truncate">
             {data.title}
           </h1>
 
-          <p className="mt-2 text-gray-800 dark:text-gray-400">
+          <p className="mt-2 text-gray-800 dark:text-gray-400 truncate">
             {data.description}
           </p>
 
