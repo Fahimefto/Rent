@@ -3,6 +3,7 @@ import Layout from "../../components/Layout";
 import axios from "../../axios/axios";
 import { useEffect, useState } from "react";
 import moment from "moment";
+import("tw-elements");
 import { useRouter } from "next/router";
 import dynamic from "next/dynamic";
 import {
@@ -18,50 +19,94 @@ function Details({ data }) {
   const [data1, setData1] = useState(null);
   useEffect(() => {
     setData1(data);
-    console.log(data);
+    console.log(data.image);
   }, [data]);
   return (
     <Layout title="Details">
       <section>
-        <div className="mx-auto max-w-screen-xl px-4 py-16 sm:px-6 sm:py-24 lg:px-8">
-          <div className="max-w-3xl">
-            <h2 className="text-3xl  font-bold sm:text-4xl">{data.title}</h2>
+        <div className="mx-auto max-w-screen-xl px-4 sm:px-6 py-5 lg:px-8">
+          <div className="max-w-full mb-10">
+            <h2 className="text-2xl uppercase font-bold  text-center w-full mx-auto">
+              {data.title}
+            </h2>
+          </div>
+          <div
+            id="carouselExampleControls"
+            className="carousel slide relative"
+            data-bs-ride="carousel"
+          >
+            <div className="carousel-inner relative w-full overflow-hidden border-emerald-800 border">
+              <div className="carousel-item active relative float-left w-full ">
+                <img
+                  src="https://res.cloudinary.com/dtcjz5osi/image/upload/v1667723329/rent/undraw_Small_town_re_7mcn_ydygac.png"
+                  className="block w-full h-1/3 object-cover"
+                  alt="Wild Landscape"
+                />
+              </div>
+              {data.image
+                ? data.image.map((item, index) => (
+                    <div className="carousel-item relative float-left w-full h-1/3 object-cover">
+                      <img
+                        src={`${item.img}`}
+                        className="block w-full h-1/3 object-cover"
+                        alt={`${item.img}`}
+                      />
+                    </div>
+                  ))
+                : null}
+            </div>
+            <button
+              className="carousel-control-prev absolute top-0 bottom-0 flex items-center justify-center p-0 text-center border-0 hover:outline-none hover:no-underline focus:outline-none focus:no-underline left-0 "
+              type="button"
+              data-bs-target="#carouselExampleControls"
+              data-bs-slide="prev"
+            >
+              <span
+                className="carousel-control-prev-icon  inline-block bg-no-repeat"
+                aria-hidden="true"
+              ></span>
+              <span class="visually-hidden ">Previous</span>
+            </button>
+            <button
+              className="carousel-control-next absolute top-0 bottom-0 flex items-center justify-center p-0 text-center border-0 hover:outline-none hover:no-underline focus:outline-none focus:no-underline right-0  "
+              type="button"
+              data-bs-target="#carouselExampleControls"
+              data-bs-slide="next"
+            >
+              <span
+                className="carousel-control-next-icon inline-block bg-no-repeat"
+                aria-hidden="true"
+              ></span>
+              <span class="visually-hidden">Next</span>
+            </button>
           </div>
 
-          <div className="mt-8 grid grid-cols-1 gap-8 lg:grid-cols-2 lg:gap-16">
-            <div className="relative h-64 overflow-hidden sm:h-80 lg:h-full">
-              <img
-                alt="Party"
-                src="https://images.unsplash.com/photo-1496843916299-590492c751f4?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1771&q=80"
-                className="absolute inset-0 h-full w-full object-cover"
-              />
-            </div>
-
-            <div className="lg:py-16">
+          <div className=" grid grid-cols-1 gap-8 lg:grid-cols-2 lg:gap-16">
+            <div className="mt-10">
               <article className="space-y-4 text-gray-600">
                 <p>{data.description}</p>
 
                 <div className="flex flex-row w-full gap-2 items-center">
                   <MapPinIcon className="flex w-5 text-emerald-900" />
-                  <h3 className="flex font-bold text-sm">
+                  <div className="flex font-bold text-sm">
                     <h3 className="flex font-bold text-sm">
                       {data.area}, {data.upazila}, {data.district},{" "}
                       {data.division}
                     </h3>
-                  </h3>
+                  </div>
                 </div>
                 <div className="flex flex-row w-full gap-2 items-center">
                   <PhoneIcon className="flex w-5 text-emerald-900" />
-                  <h3 className="flex font-bold text-sm">
+                  <div className="flex font-bold text-sm">
                     <h3 className="flex font-bold text-sm">{data.contact}</h3>
-                  </h3>
+                  </div>
                 </div>
                 <div className="flex flex-row w-full gap-2 items-center">
                   <ClockIcon className="flex w-5 text-emerald-900" />
-                  <h3 className="flex font-bold text-sm">
+                  <div className="flex font-bold text-sm">
                     {moment(`${data.date}`).fromNow("L")},{"  "}
                     {moment(`${data.date}`).format("dddd ,do MMMM, yyyy")}
-                  </h3>
+                  </div>
                 </div>
                 <div className="flex flex-row">
                   <div className="flex flex-row w-full gap-2 items-center">

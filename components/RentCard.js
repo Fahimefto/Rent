@@ -17,11 +17,20 @@ export default function RentCard({ data }) {
       <div className="bg-white border-2 border-emerald-900 border-opacity-20 rounded-md p-5 shadow-xl">
         <Link href="/">
           <a>
-            <img
-              className="object-cover object-center w-full h-64 rounded-lg lg:h-80 border shadow-md border-emerald-800"
-              src="https://images.unsplash.com/photo-1624996379697-f01d168b1a52?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80"
-              alt=""
-            />
+            {data.image
+              ? data.image.map((img, index) => {
+                  if (index === 0) {
+                    console.log(img);
+                    return (
+                      <img
+                        src={`${img.img}`}
+                        className="block w-full h-1/3 object-cover"
+                        alt=""
+                      />
+                    );
+                  }
+                })
+              : null}
           </a>
         </Link>
 
