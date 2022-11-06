@@ -19,6 +19,7 @@ export default function CreateRent() {
   const [districtId, setDistrictId] = useState(null);
   const [upazilaId, setUpazilaId] = useState(null);
   const [area, setArea] = useState([]);
+  const [files, setFiles] = useState(null);
 
   useEffect(() => {
     const division = address.allDivision();
@@ -42,6 +43,15 @@ export default function CreateRent() {
 
   useEffect(() => {}, [districtId]);
 
+  const handleFile = (e) => {
+    const subFile = [];
+    for (let i = 0; i < e.target.files.length; i++) {
+      console.log(e.target.files[i]);
+      subFile.push(e.target.files[i]);
+    }
+    setFiles(subFile);
+  };
+
   const submitHandler = async () => {
     const notify = toast.loading("Please wait...");
     if (
@@ -53,7 +63,8 @@ export default function CreateRent() {
       !shortArea ||
       !districtId ||
       !divisionId ||
-      !upazilaId
+      !upazilaId ||
+      !files
     ) {
       toast.error("Please fill all the fields", {
         id: notify,
@@ -83,23 +94,27 @@ export default function CreateRent() {
         }
         if (id) {
           try {
-            const res = await axios.post(
-              "/post/new",
-              {
-                title: title,
-                user_id: id,
-                description: des,
-                contact: phone,
-                area: shortArea,
-                fees: fees,
-                room: room,
-                postal_code: room,
-                district: districtId,
-                upazila: upazilaId,
-                division: divisionId,
-              },
-              { withCredentials: true }
-            );
+            const formData = new FormData();
+            formData.append("title", title);
+            formData.append("description", des);
+            formData.append("room", room);
+            formData.append("fees", fees);
+            formData.append("contact", phone);
+            formData.append("area", shortArea);
+            formData.append("district", districtId);
+            formData.append("division", divisionId);
+            formData.append("upazila", upazilaId);
+            formData.append("user_id", id);
+            if (files) {
+              for (let i = 0; i < files.length; i++) {
+                formData.append("image", files[i]);
+              }
+            }
+            console.log(formData);
+
+            const res = await axios.post("/post/new", formData, {
+              withCredentials: true,
+            });
             console.log(res);
             if (res.status === 201) {
               toast.success("Successfully created", {
@@ -261,14 +276,13 @@ export default function CreateRent() {
               ))}
             </select>
           </label>
-          <label className="block">
+          <label className="block" onChange={handleFile}>
             <span className="block mb-2 text font-medium ">Image File</span>
             <input
               className="form-input border-2 rounded-full p-2 w-full px-8 border-opacity-50 border-emerald-800 bg-emerald-800 bg-opacity-10"
               type="file"
-              placeholder="Write your email"
-              inputMode="email"
               required
+              multiple
             />
           </label>
         </form>

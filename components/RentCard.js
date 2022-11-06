@@ -24,7 +24,7 @@ export default function RentCard({ data }) {
                     return (
                       <img
                         src={`${img.img}`}
-                        className="block w-full h-1/3 object-cover"
+                        className="object-cover object-center w-full h-64 rounded-lg lg:h-80"
                         alt=""
                       />
                     );
@@ -42,13 +42,11 @@ export default function RentCard({ data }) {
             </h3>
           </div>
 
-          <h1 className="mt-4 text-xl font-semibold text-gray-800 dark:text-white truncate">
+          <h1 className="mt-4 text-xl font-semibold text-gray-800  truncate">
             {data.title}
           </h1>
 
-          <p className="mt-2 text-gray-800 dark:text-gray-400 truncate">
-            {data.description}
-          </p>
+          <p className="mt-2 text-gray-800  truncate">{data.description}</p>
 
           <div className="flex items-center justify-between mt-4 ">
             <div className="flex flex-col gap-3">

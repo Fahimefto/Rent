@@ -22,6 +22,7 @@ export default function UpdatePost({ data }) {
   const [area, setArea] = useState([]);
   const rounter = useRouter();
   const [edit, setEdit] = useState(null);
+  const [files, setFiles] = useState(null);
   useEffect(() => {
     setTitle(data.title);
     setDes(data.description);
@@ -54,6 +55,15 @@ export default function UpdatePost({ data }) {
   }, [districtId]);
 
   useEffect(() => {}, [districtId]);
+
+  const handleFile = (e) => {
+    const subFile = [];
+    for (let i = 0; i < e.target.files.length; i++) {
+      console.log(e.target.files[i]);
+      subFile.push(e.target.files[i]);
+    }
+    setFiles(subFile);
+  };
 
   const submitHandler = async () => {
     const { editpost } = rounter.query;
@@ -97,23 +107,27 @@ export default function UpdatePost({ data }) {
         }
         if (id) {
           try {
-            const res = await axios.put(
-              `/post/update/${editpost}`,
-              {
-                title: title,
+            console.log(files);
+            const formData = new FormData();
+            formData.append("title", title);
+            formData.append("description", des);
+            formData.append("room", room);
+            formData.append("fees", fees);
+            formData.append("contact", phone);
+            formData.append("area", shortArea);
+            formData.append("district", districtId);
+            formData.append("division", divisionId);
+            formData.append("upazila", upazilaId);
+            formData.append("user_id", id);
+            if (files) {
+              for (let i = 0; i < files.length; i++) {
+                formData.append("image", files[i]);
+              }
+            }
 
-                description: des,
-                contact: phone,
-                area: shortArea,
-                fees: fees,
-                room: room,
-                postal_code: room,
-                district: districtId,
-                upazila: upazilaId,
-                division: divisionId,
-              },
-              { withCredentials: true }
-            );
+            const res = await axios.put(`/post/update/${editpost}`, formData, {
+              withCredentials: true,
+            });
             console.log(res);
             if (res.status === 200) {
               toast.success("Successfully updated", {
@@ -282,14 +296,13 @@ export default function UpdatePost({ data }) {
               ))}
             </select>
           </label>
-          <label className="block">
+          <label className="block" onChange={handleFile}>
             <span className="block mb-2 text font-medium ">Image File</span>
             <input
               className="form-input border-2 rounded-full p-2 w-full px-8 border-opacity-50 border-emerald-800 bg-emerald-800 bg-opacity-10"
               type="file"
-              placeholder="Write your email"
-              inputMode="email"
               required
+              multiple
             />
           </label>
         </form>

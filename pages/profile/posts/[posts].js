@@ -58,15 +58,15 @@ export default function post() {
 
   return (
     <Layout>
-      <section className="bg-white dark:bg-gray-900">
+      <section className="bg-white ">
         <div className="container px-6 py-10 ">
           <div className="flex items-center w-full ">
-            <h1 className="text-2xl text-center w-full lg:text-center font-semibold text-gray-800 capitalize lg:text-2xl dark:text-white">
+            <h1 className="text-2xl text-center w-full lg:text-center font-semibold text-gray-800 capitalize lg:text-2xl ">
               All Posts
             </h1>
           </div>
 
-          <hr className="my-8 border-emerald-900 border-2 dark:border-gray-700" />
+          <hr className="my-8 border-emerald-900 border-2 " />
 
           <div className="grid grid-cols-1 gap-8 md:grid-cols-2 xl:grid-cols-3">
             {rent &&
