@@ -5,8 +5,13 @@ import { useState, useEffect } from "react";
 import Card from "../components/RentCard";
 import Link from "next/link";
 import axios from "../axios/axios";
+import useBearStore from "../Store/Store";
 
 export default function Home({ data }) {
+  const bears = useBearStore((state) => state.bears);
+  const increasePopulation = useBearStore((state) => state.increasePopulation);
+  const removeAllBears = useBearStore((state) => state.removeAllBears);
+
   return (
     <>
       <Layout title="Home">
@@ -40,12 +45,11 @@ export default function Home({ data }) {
   );
 }
 
-export async function getServerSideProps() {
+export async function getServerSideProps(ctx) {
   const res = await axios.get("/post/all");
   const resData = res.data;
   const data = resData;
 
-  console.log(data);
   return {
     props: { data },
   };

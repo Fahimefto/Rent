@@ -14,6 +14,19 @@ export default function Nav() {
   const [auth, setAuth] = useState(false);
   const bears = useBearStore((state) => state.bears);
   const removeAllBears = useBearStore((state) => state.removeAllBears);
+  const increasePopulation = useBearStore((state) => state.increasePopulation);
+  useEffect(() => {
+    const fetch = async () => {
+      const result = await axios.get("/user/verify", { withCredentials: true });
+      if (result.data.status === 401) {
+        removeAllBears();
+      } else if (result.data.status === 200) {
+        increasePopulation();
+      }
+    };
+    fetch();
+  }, [router, bears]);
+
   useEffect(() => {
     setAuth(bears);
   }, [bears]);
@@ -166,27 +179,27 @@ export default function Nav() {
                             title="Our product"
                             className="font-medium tracking-wide transition-colors duration-200 hover:text-deep-purple-accent-400"
                           >
-                            Product
+                            Home
                           </Link>
                         </li>
                         <li>
                           <Link
-                            href="/"
+                            href="/create"
                             aria-label="Our product"
                             title="Our product"
                             className="font-medium tracking-wide transition-colors duration-200 hover:text-deep-purple-accent-400"
                           >
-                            Features
+                            Create
                           </Link>
                         </li>
                         <li>
                           <Link
-                            href="/"
+                            href="/find"
                             aria-label="Product pricing"
                             title="Product pricing"
                             className="font-medium tracking-wide transition-colors duration-200 hover:text-deep-purple-accent-400"
                           >
-                            Pricing
+                            Find
                           </Link>
                         </li>
                         <li>
@@ -200,12 +213,35 @@ export default function Nav() {
                           </Link>
                         </li>
                         <li>
-                          <Link
-                            href="/login"
-                            className="inline-flex items-center justify-center h-12 px-6 font-medium tracking-wide text-white bg-emerald-900 transition duration-200  shadow-md rounded-md w-full"
-                          >
-                            Sign up
-                          </Link>
+                          {!auth ? null : (
+                            <Link
+                              href="/profile"
+                              aria-label="profile"
+                              title="Profile"
+                              className="font-medium tracking-wide text-gray-900 transition-colors duration-200 hover:text-teal-accent-400"
+                            >
+                              Profile
+                            </Link>
+                          )}
+                        </li>
+
+                        <li>
+                          {!auth ? (
+                            <Link href="/login  ">
+                              <button className="inline-flex items-center justify-center h-12 w-full font-bold hover:scale-105 tracking-wide ease-in-out  text-emerald-800 bg-emerald-800 bg-opacity-10 transition duration-75  shadow-md rounded-md">
+                                Login
+                              </button>
+                            </Link>
+                          ) : (
+                            <Link href="/  ">
+                              <button
+                                className="inline-flex items-center justify-center h-12 w-full  tracking-wide text-rose-700 hover:scale-105 bg-opacity-10 font-bold bg-rose-700 transition duration-75  shadow-md rounded-md"
+                                onClick={logoutHandler}
+                              >
+                                Logout
+                              </button>
+                            </Link>
+                          )}
                         </li>
                       </ul>
                     </nav>
