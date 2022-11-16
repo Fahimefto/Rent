@@ -2,7 +2,7 @@ import React from "react";
 import Layout from "../components/Layout";
 import useBearStore from "../Store/Store";
 
-export default function zustand() {
+export default function Zustand() {
   const bears = useBearStore((state) => state.bears);
   const increasePopulation = useBearStore((state) => state.increasePopulation);
   const removeAllBears = useBearStore((state) => state.removeAllBears);

@@ -24,6 +24,7 @@ export default function PostCard({ data, deleteHandler }) {
                       src={`${img.img}`}
                       className="object-cover object-center w-full h-64 rounded-lg lg:h-80"
                       alt=""
+                      key={index}
                     />
                   );
                 }

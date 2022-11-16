@@ -3,7 +3,7 @@ import Layout from "../components/Layout";
 import { useState } from "react";
 import CreateRent from "../components/CreateRent";
 
-export default function create() {
+export default function Create() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");

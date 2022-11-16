@@ -5,7 +5,7 @@ import ShortDetails from "../components/ShortDetails";
 const address = require("@bangladeshi/bangladesh-address");
 import axios from "../axios/axios";
 
-export default function find({ data }) {
+export default function Find({ data }) {
   const [division, setDivision] = useState([]);
   const [divisionId, setDivisionId] = useState([]);
   const [district, setDistrict] = useState([]);

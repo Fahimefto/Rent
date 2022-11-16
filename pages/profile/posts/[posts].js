@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import PostCard from "../../../components/PostCard";
 import axios from "../../../axios/axios";
 import { toast } from "react-hot-toast";
-export default function post() {
+export default function Post() {
   const router = useRouter();
   const { posts } = router.query;
   const [user, setUser] = useState("");

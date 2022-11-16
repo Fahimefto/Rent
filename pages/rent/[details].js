@@ -45,7 +45,10 @@ function Details({ data }) {
               </div>
               {data.image
                 ? data.image.map((item, index) => (
-                    <div className="carousel-item relative float-left w-full h-1/3 object-cover">
+                    <div
+                      className="carousel-item relative float-left w-full h-1/3 object-cover"
+                      key={index}
+                    >
                       <img
                         src={`${item.img}`}
                         className="block w-full h-1/3 object-cover"

@@ -1,7 +1,7 @@
 import Link from "next/link";
 import React from "react";
 
-export default function ({ data }) {
+export default function Card({ data }) {
   return (
     <>
       <div className="block rounded-lg p-4 shadow-sm bg-white shadow-indigo-100">
@@ -15,7 +15,7 @@ export default function ({ data }) {
           </Link>
         </div>
         <div className="mt-2">
-          <dl>
+          <div>
             <div>
               <div className="sr-only">Price</div>
 
@@ -27,7 +27,7 @@ export default function ({ data }) {
 
               <dd className="font-medium">{data.division}</dd>
             </div>
-          </dl>
+          </div>
 
           <div className="mt-6 flex items-center gap-8 text-xs">
             <div className="sm:inline-flex sm:shrink-0 sm:items-center">

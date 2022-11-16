@@ -26,6 +26,7 @@ export default function RentCard({ data }) {
                         src={`${img.img}`}
                         className="object-cover object-center w-full h-64 rounded-lg lg:h-80"
                         alt=""
+                        key={index}
                       />
                     );
                   }
