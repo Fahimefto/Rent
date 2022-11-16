@@ -1,6 +1,6 @@
-import Link from "next/link";
-import React from "react";
-import Layout from "../components/Layout";
+import Link from 'next/link';
+import React from 'react';
+import Layout from '../components/Layout';
 
 export default function about() {
   return (
@@ -12,9 +12,9 @@ export default function about() {
           </h1>
 
           <p class='max-w-2xl mx-auto my-6 text-center text-gray-500 dark:text-gray-300'>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo
-            incidunt ex placeat modi magni quia error alias, adipisci rem
-            similique, at omnis eligendi optio eos harum.
+            This Web application helps the user to register individual
+            apartments or a single room to assist you in finding the perfect
+            rental home or property.
           </p>
           <h1 class='text-xl mt-14 mb-5 font-semibold text-center text-gray-800 capitalize '>
             Developed By
